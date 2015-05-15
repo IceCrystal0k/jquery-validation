@@ -9,8 +9,11 @@ function PageEdit()
 	function initControls()
 	{
 		$('.btn-save').click(function(e) {
+			var formId = 'mainForm';
 			tinyMCE.triggerSave();
-			$('#mainForm').submit();
+			var submitForm = ($("#"+formId).valid());
+			if (submitForm)
+				$('#'+formId).submit();
 		});
 	}
 	
@@ -24,5 +27,8 @@ function PageEdit()
 		vW.InitValidatorOptions('mainForm', {rules:rules, messages:messages, ignore:'' } );
 	}
 }
-var fnPageEdit = new PageEdit();
-fnPageEdit.Init();
+
+$(document).ready(function() {
+	var fnPageEdit = new PageEdit();
+	fnPageEdit.Init();
+});
